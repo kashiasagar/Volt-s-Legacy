@@ -1,0 +1,1076 @@
+/* ==========================================================================
+   VOLT'S LEGACY SOLAR - Responsive Breakpoints & Mobile Navigation
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Mobile Hamburger Toggle & Drawer
+   -------------------------------------------------------------------------- */
+.mobile-menu-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--gray-100);
+  border: 1px solid var(--gray-300);
+  color: var(--primary-900);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.mobile-menu-toggle:hover {
+  background: var(--gray-200);
+}
+
+.mobile-menu-toggle svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Mobile Drawer Overlay */
+.mobile-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 21, 48, 0.7);
+  backdrop-filter: blur(8px);
+  z-index: 1500;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-base);
+}
+
+.mobile-drawer-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Mobile Drawer Panel */
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 85%;
+  max-width: 380px;
+  height: 100%;
+  background: var(--white);
+  z-index: 1600;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform var(--transition-smooth);
+  overflow-y: auto;
+}
+
+.mobile-drawer.active {
+  transform: translateX(0);
+}
+
+.mobile-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.mobile-drawer-logo {
+  height: 52px;
+  width: auto;
+}
+
+.mobile-drawer-close {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--gray-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-700);
+}
+
+.mobile-nav-list {
+  list-style: none;
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-nav-item {
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.mobile-nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--primary-900);
+  text-decoration: none;
+  width: 100%;
+  text-align: left;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
+  color: var(--blue-600);
+  background: var(--blue-50);
+}
+
+.mobile-accordion-icon {
+  width: 18px;
+  height: 18px;
+  transition: transform var(--transition-base);
+}
+
+.mobile-nav-item.open .mobile-accordion-icon {
+  transform: rotate(180deg);
+}
+
+.mobile-submenu {
+  list-style: none;
+  background: var(--gray-50);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease-out;
+  padding: 0 1.5rem;
+}
+
+.mobile-nav-item.open .mobile-submenu {
+  max-height: 500px;
+  padding: 0.75rem 1.5rem;
+}
+
+.mobile-submenu-item {
+  margin: 0.5rem 0;
+}
+
+.mobile-submenu-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  padding: 0.4rem 0;
+}
+
+.mobile-submenu-link:hover {
+  color: var(--blue-600);
+}
+
+.mobile-drawer-footer {
+  padding: 1.5rem;
+  margin-top: auto;
+  border-top: 1px solid var(--gray-200);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Media Queries
+   -------------------------------------------------------------------------- */
+
+/* Large Tablets & Small Laptops (<= 1180px) */
+@media (max-width: 1180px) {
+  .footer-grid {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+  }
+  .footer-grid > div:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Tablets (<= 1024px) */
+@media (max-width: 1024px) {
+  :root {
+    --header-height: 76px;
+  }
+
+  .nav-desktop {
+    display: none;
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+  }
+
+  .header-actions .btn-quotation-header {
+    display: none;
+  }
+
+  .split-layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .quote-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .offerings-grid,
+  .offerings-grid-5,
+  .solutions-grid,
+  .projects-grid,
+  .trust-grid,
+  .blogs-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .contact-info-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .social-app-buttons-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .solar-journey-timeline {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .solar-journey-track {
+    display: none;
+  }
+
+  .pergola-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .process-steps-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero-section {
+    min-height: 580px;
+  }
+
+  .hero-controls {
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+}
+
+/* Small Tablets & Mobile Landscape (<= 768px) */
+@media (max-width: 768px) {
+  .section,
+  .solar-journey-section,
+  .on-grid-simulator-section {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .section-header {
+    margin-bottom: 1.25rem;
+  }
+
+  /* On-Grid Simulator Mobile Responsive */
+  .og-control-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .og-mode-toggle-group {
+    width: 100%;
+    display: flex;
+  }
+
+  .og-mode-btn {
+    flex: 1;
+    justify-content: center;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.78rem;
+  }
+
+  .og-status-pill {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.75rem;
+    padding: 0.5rem 0.85rem;
+    text-align: center;
+  }
+
+  .og-simulation-stage {
+    padding: 1rem 0.35rem;
+    border-radius: 16px;
+  }
+
+  .og-telemetry-dashboard {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .og-telemetry-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .og-metrics-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .og-phases-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .og-results-strip {
+    padding: 2rem 1.25rem;
+  }
+
+  .og-benefits-row {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .og-results-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .og-results-actions .btn {
+    width: 100%;
+  }
+
+  .hassle-free-headline-badge {
+    padding: 0.6rem 1.25rem;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+  }
+
+  .solar-journey-timeline {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  .solar-journey-timeline::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    bottom: 20px;
+    left: 4px;
+    width: 3px;
+    background: linear-gradient(180deg, #3b82f6 0%, #f59e0b 50%, #10b981 100%);
+    border-radius: 4px;
+  }
+
+  .solar-energy-flow-motif {
+    padding: 0.75rem 1rem;
+    gap: 0.6rem;
+    font-size: 0.8rem;
+  }
+
+  .journey-trust-strip {
+    padding: 1.75rem 1.25rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .govt-guideline-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.25rem;
+  }
+
+  .offerings-grid,
+  .offerings-grid-5,
+  .solutions-grid,
+  .projects-grid,
+  .trust-grid,
+  .blogs-grid,
+  .contact-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pergola-showcase-section {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .pergola-photos-cluster {
+    grid-template-columns: 1fr;
+  }
+
+  .process-steps-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .consulting-features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .calc-results-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-bottom-links {
+    justify-content: center;
+  }
+
+  .hero-content {
+    padding: 1.5rem 0;
+  }
+
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .hero-controls {
+    display: none;
+  }
+
+  .cta-banner {
+    padding: 3rem 1.5rem;
+  }
+}
+
+/* Small Mobile Devices (<= 480px) */
+@media (max-width: 480px) {
+  .brand-logo-img {
+    height: 52px;
+  }
+
+  .container {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .hero-ctas {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-ctas .btn {
+    width: 100%;
+  }
+
+  .cta-banner-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .cta-banner-actions .btn {
+    width: 100%;
+  }
+
+  .calculator-card,
+  .quote-form-card {
+    padding: 1.5rem;
+  }
+
+  .hassle-free-badge {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Solar for Homes (/solar-for-homes) Responsive Breakpoints
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1024px) {
+  .sfh-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .sfh-trust-bar {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .sfh-process-grid-6 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .sfh-why-grid-6 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sfh-sizing-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sfh-step-flow-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sfh-loan-journey-5 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .sfh-timeline-grid-6 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .sfh-space-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .sfhs-safety-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sfh-calc-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .sfh-idea-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .sfh-emi-calc-row {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .sfh-during-after-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .sfh-financing-grid,
+  .sfh-comp-cards-grid,
+  .sfh-3way-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .sfh-3way-specs-bar {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .sfh-form-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .sfh-sidebar-card {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .sfh-simple-survey-card {
+    padding: 1.5rem 1.15rem;
+  }
+
+  .sfh-survey-ribbon {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    padding: 0.85rem 1rem;
+  }
+
+  .sfh-form-row-2 {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .sfh-hero-title {
+    font-size: 2.15rem;
+  }
+
+  .sfh-hero-text {
+    font-size: 1rem;
+  }
+
+  .sfh-hero-actions {
+    flex-direction: column;
+  }
+
+  .sfh-hero-actions .btn {
+    width: 100%;
+  }
+
+  .sfh-trust-bar {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .sfh-subsidy-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .sfh-process-grid-6 {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  .sfh-process-grid-6::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    bottom: 15px;
+    left: 4px;
+    width: 3px;
+    background: linear-gradient(180deg, #3b82f6 0%, #f59e0b 50%, #10b981 100%);
+    border-radius: 4px;
+  }
+
+  .sfh-why-grid-6 {
+    grid-template-columns: 1fr;
+  }
+
+  .sfh-sizing-grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .sfh-step-flow-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .sfh-loan-journey-5 {
+    grid-template-columns: 1fr;
+  }
+
+  .sfh-timeline-grid-6 {
+    grid-template-columns: 1fr;
+  }
+
+  .sfh-roi-interactive-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sfh-chart-grid {
+    gap: 0.5rem;
+    height: 200px;
+    padding: 1.5rem 0.25rem 0;
+  }
+
+  .sfh-chart-bar-val {
+    font-size: 0.68rem;
+  }
+
+  .sfh-chart-year-lbl {
+    font-size: 0.75rem;
+  }
+
+  .sfh-calculator-card {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .sfh-calc-outputs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sfh-3way-specs-bar {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .sfh-fin-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sfh-space-list {
+    grid-template-columns: 1fr;
+  }
+
+  .sfhs-safety-grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .sfh-cta-title {
+    font-size: 1.85rem;
+  }
+
+  /* Housing Societies Page Responsive (SFHS) */
+  .sfhs-hero-title {
+    font-size: 2.15rem;
+  }
+
+  .sfhs-hero-text {
+    font-size: 1rem;
+  }
+
+  .sfhs-hero-actions {
+    flex-direction: column;
+  }
+
+  .sfhs-hero-actions .btn {
+    width: 100%;
+  }
+
+  .sfhs-hero-trust-grid {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .sfhs-idea-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .sfhs-uses-grid-6 {
+    grid-template-columns: 1fr;
+  }
+
+  .sfhs-gov-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .sfhs-cfa-steps-grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .sfhs-process-grid-6 {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  .sfhs-process-grid-6::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    bottom: 15px;
+    left: 4px;
+    width: 3px;
+    background: linear-gradient(180deg, #3b82f6 0%, #f59e0b 50%, #10b981 100%);
+    border-radius: 4px;
+  }
+
+  .sfhs-reasons-grid-6 {
+    grid-template-columns: 1fr;
+  }
+
+  .sfhs-models-grid-3 {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .sfhs-compare-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .sfhs-decision-flow-5 {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sfhs-decision-step {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .sfhs-decision-arrow {
+    transform: rotate(90deg);
+    text-align: center;
+    margin: 0.25rem 0;
+  }
+
+  .sfhs-roof-grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .sfhs-after-journey-flow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sfhs-journey-step {
+    justify-content: center;
+  }
+
+  .sfhs-journey-arrow {
+    transform: rotate(90deg);
+    text-align: center;
+    margin: 0.2rem 0;
+  }
+
+  .sfhs-longterm-grid-6 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sfhs-chart-bars {
+    gap: 0.5rem;
+    height: 200px;
+    padding: 1.5rem 0.25rem 0;
+  }
+
+  .sfhs-bar-val {
+    font-size: 0.68rem;
+    top: -20px;
+  }
+
+  .sfhs-bar-lbl {
+    font-size: 0.72rem;
+  }
+
+  .sfhs-calc-container {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .sfhs-calc-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .sfhs-outputs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sfhs-example-card {
+    padding: 1.5rem;
+  }
+
+  .sfhs-example-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sfhs-formula-pill {
+    min-width: 100%;
+  }
+
+  .sfhs-cta-title {
+    font-size: 1.85rem;
+  }
+}
+
+@media (max-width: 992px) and (min-width: 769px) {
+  .sfhs-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .sfhs-hero-trust-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sfhs-idea-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sfhs-uses-grid-6 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sfhs-gov-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sfhs-cfa-steps-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sfhs-process-grid-6 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sfhs-reasons-grid-6 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sfhs-models-grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .sfhs-compare-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sfhs-roof-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sfhs-longterm-grid-6 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .sfhs-calc-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .sfhs-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .sfhs-trust-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sfhs-loads-problem-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .sfhs-uses-grid-6 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sfhs-cfa-rules-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .preview-examples-row {
+    grid-template-columns: 1fr;
+  }
+
+  .sfhs-calc-grid-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .sfhs-3way-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sfhs-reg-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sg-steps-grid-8 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sfhs-diagram-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ev-solar-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sfhs-models-grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .checklist-grid-18 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sfhs-quality-grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .sfhs-env-counters-card {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .sfhs-trust-bar {
+    grid-template-columns: 1fr;
+  }
+
+  .sfhs-loads-problem-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sfhs-uses-grid-6 {
+    grid-template-columns: 1fr;
+  }
+
+  .sfhs-8-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .soc-input-row-2,
+  .soc-input-row-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .sfhs-reg-grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .sg-steps-grid-8 {
+    grid-template-columns: 1fr;
+  }
+
+  .checklist-grid-18 {
+    grid-template-columns: 1fr;
+  }
+
+  .sfh-form-row-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .sfhs-form-card {
+    padding: 1.5rem;
+  }
+
+  .sfhs-full-calc-container {
+    padding: 1.5rem 1.15rem;
+  }
+
+  .formula-math-flow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .f-op {
+    transform: rotate(90deg);
+    text-align: center;
+    margin: 0.25rem 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .sfhs-longterm-grid-6 {
+    grid-template-columns: 1fr;
+  }
+
+  .sfhs-hero-title {
+    font-size: 1.85rem;
+  }
+
+  .sfhs-section-title {
+    font-size: 1.6rem;
+  }
+
+  .sfhs-hero-floating-badge {
+    position: static;
+    margin-bottom: 0.5rem;
+    display: inline-flex;
+  }
+}

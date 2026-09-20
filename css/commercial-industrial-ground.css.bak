@@ -1,0 +1,1194 @@
+/* ==========================================================================
+   VOLT'S LEGACY ENERGY SOLUTIONS
+   Child Pages CSS: Commercial, Industrial, and Ground Mount Solar
+   MATCHING THE HOMES LINKED PAGE DESIGN, WIDER SENTENCES & PROPER FIT
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Shared Hero Layout & Hero Cards (Expansive Wide Layout)
+   -------------------------------------------------------------------------- */
+.cig-hero-section {
+  position: relative;
+  background: linear-gradient(180deg, #071530 0%, #0b1e42 55%, #0f2756 100%);
+  color: #ffffff;
+  padding: 4.5rem 0 4rem;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cig-hero-grid {
+  display: grid;
+  grid-template-columns: 1.18fr 0.82fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.cig-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(37, 99, 235, 0.2);
+  border: 1.5px solid rgba(59, 130, 246, 0.45);
+  color: #93c5fd;
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.4rem 1rem;
+  border-radius: 9999px;
+  margin-bottom: 1.35rem;
+  backdrop-filter: blur(8px);
+}
+
+.cig-badge.gold {
+  background: rgba(245, 158, 11, 0.2);
+  border-color: rgba(245, 158, 11, 0.5);
+  color: #fde047;
+}
+
+.cig-hero-title {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: clamp(2.3rem, 4.2vw, 3.4rem);
+  font-weight: 900;
+  line-height: 1.14;
+  color: #ffffff;
+  margin-bottom: 1.35rem;
+  letter-spacing: -0.02em;
+}
+
+.cig-hero-title .highlight-blue {
+  color: #38bdf8;
+}
+
+.cig-hero-title .highlight-gold {
+  color: #fbbf24;
+}
+
+.cig-hero-text {
+  font-size: 1.18rem;
+  line-height: 1.72;
+  color: #e2e8f0;
+  margin-bottom: 1.15rem;
+  font-weight: 400;
+}
+
+.cig-hero-subtext {
+  font-size: 1.02rem;
+  line-height: 1.68;
+  color: #94a3b8;
+  margin-bottom: 2rem;
+}
+
+.cig-hero-actions {
+  display: flex;
+  gap: 1.15rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.75rem;
+}
+
+.cig-hero-media {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+}
+
+.cig-image-card {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: #071530;
+}
+
+.cig-hero-img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cig-image-card:hover .cig-hero-img {
+  transform: scale(1.02);
+}
+
+.cig-floating-badge {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: rgba(7, 21, 48, 0.9);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  padding: 0.55rem 0.95rem;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #ffffff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  letter-spacing: 0.04em;
+  z-index: 2;
+}
+
+.cig-floating-badge .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.cig-floating-badge .dot.gold { background: #f59e0b; box-shadow: 0 0 8px #f59e0b; }
+.cig-floating-badge .dot.blue { background: #38bdf8; box-shadow: 0 0 8px #38bdf8; }
+.cig-floating-badge .dot.green { background: #22c55e; box-shadow: 0 0 8px #22c55e; }
+
+.badge-top-left { top: 18px; left: 18px; }
+.badge-mid-right { top: 50%; right: 18px; transform: translateY(-50%); }
+.badge-bottom { bottom: 18px; left: 18px; }
+
+/* Hero Energy Flow Bar */
+.cig-hero-flow-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 0.95rem 1.35rem;
+  backdrop-filter: blur(10px);
+}
+
+.cig-flow-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.25rem;
+}
+
+.cig-flow-step .icon {
+  font-size: 1.25rem;
+}
+
+.cig-flow-step .text {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #cbd5e1;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.cig-flow-step.highlight .text {
+  color: #38bdf8;
+}
+
+.cig-flow-step.green .text {
+  color: #4ade80;
+}
+
+.cig-flow-sep {
+  color: #64748b;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+/* 4-Item Trust Bar under Hero */
+.cig-trust-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 1.35rem 2rem;
+  margin-top: 2.25rem;
+}
+
+.cig-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.cig-trust-check {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #16a34a;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   2. Problem / Value Proposition Grids (Wide Spacing & Roomy Cards)
+   -------------------------------------------------------------------------- */
+.cig-section {
+  padding: 5rem 0;
+}
+
+.cig-bg-light {
+  background: #f8fafc;
+}
+
+.cig-bg-white {
+  background: #ffffff;
+}
+
+.cig-bg-dark {
+  background: #071530;
+  color: #ffffff;
+}
+
+.cig-section-header {
+  text-align: center;
+  max-width: 1040px;
+  margin: 0 auto 3.5rem;
+}
+
+.cig-section-title {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: clamp(2.1rem, 3.8vw, 3rem);
+  font-weight: 800;
+  color: #071530;
+  margin-top: 0.65rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  line-height: 1.22;
+}
+
+.cig-bg-dark .cig-section-title {
+  color: #ffffff;
+}
+
+.cig-section-subtitle {
+  font-size: 1.15rem;
+  color: #475569;
+  line-height: 1.75;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.cig-bg-dark .cig-section-subtitle {
+  color: #cbd5e1;
+}
+
+.cig-cards-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+.cig-cards-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.75rem;
+}
+
+.cig-cards-grid-5 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.cig-cards-grid-6 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+.cig-feature-card {
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 2.25rem 2rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.cig-feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+  border-color: #3b82f6;
+}
+
+.cig-feature-card .card-icon-box {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: #eff6ff;
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  margin-bottom: 1.35rem;
+}
+
+.cig-feature-card.gold .card-icon-box {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.cig-feature-card.green .card-icon-box {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.cig-feature-card .card-title {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.01em;
+}
+
+.cig-feature-card .card-desc {
+  font-size: 0.98rem;
+  color: #475569;
+  line-height: 1.68;
+  margin-bottom: 1.25rem;
+  flex-grow: 1;
+}
+
+.cig-feature-card .card-tag {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 0.3rem 0.75rem;
+  border-radius: 8px;
+  background: #f1f5f9;
+  color: #334155;
+  align-self: flex-start;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* --------------------------------------------------------------------------
+   3. Regulatory Notice / No-Subsidy Callout Banner (Clean Homes Info Box Style)
+   -------------------------------------------------------------------------- */
+.cig-regulatory-banner {
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-left: 6px solid #2563eb;
+  border-radius: 16px;
+  padding: 2rem 2.25rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+  margin-bottom: 3.5rem;
+}
+
+.cig-regulatory-banner.gold {
+  border-left-color: #f59e0b;
+}
+
+.cig-regulatory-banner.warning {
+  border-left-color: #dc2626;
+  background: #fffafa;
+}
+
+.cig-reg-title {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #071530;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cig-reg-text {
+  font-size: 1rem;
+  color: #334155;
+  line-height: 1.72;
+}
+
+/* --------------------------------------------------------------------------
+   4. High-Performance Financial Calculators (Homes-Style White Wrapper)
+   -------------------------------------------------------------------------- */
+.cig-calc-container {
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 20px;
+  box-shadow: 0 14px 40px -10px rgba(15, 23, 42, 0.08);
+  padding: 2.75rem 2.25rem;
+  margin-top: 1.5rem;
+}
+
+.cig-calc-ribbon {
+  background: linear-gradient(90deg, #071530 0%, #1e3a8a 100%);
+  color: #ffffff;
+  border-radius: 14px;
+  padding: 1.1rem 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  margin-bottom: 2.25rem;
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.cig-calc-grid-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 3rem;
+}
+
+.cig-calc-col-heading {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #071530;
+  margin-bottom: 1.75rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 2px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cig-input-group {
+  margin-bottom: 1.6rem;
+}
+
+.cig-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.cig-label-row label {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.cig-val-badge {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #2563eb;
+  background: #eff6ff;
+  border: 1.5px solid #bfdbfe;
+  padding: 0.25rem 0.75rem;
+  border-radius: 8px;
+}
+
+.cig-val-badge.green {
+  color: #16a34a;
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+.cig-val-badge.gold {
+  color: #d97706;
+  background: #fef3c7;
+  border-color: #fde68a;
+}
+
+.cig-range-slider {
+  width: 100%;
+  height: 8px;
+  border-radius: 6px;
+  background: #e2e8f0;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+.cig-range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #2563eb;
+  cursor: pointer;
+  border: 2.5px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  transition: transform 0.12s ease;
+}
+
+.cig-range-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.cig-slider-ticks {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #94a3b8;
+  margin-top: 0.45rem;
+}
+
+.cig-input-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.6rem;
+}
+
+.cig-input-row-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.6rem;
+}
+
+.cig-subgroup label {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #475569;
+  margin-bottom: 0.4rem;
+}
+
+/* Sizing Toggle */
+.cig-mode-toggle {
+  display: flex;
+  gap: 0.4rem;
+  background: #f1f5f9;
+  padding: 0.3rem;
+  border-radius: 10px;
+}
+
+.cig-btn-mode {
+  padding: 0.4rem 0.95rem;
+  font-size: 0.82rem;
+  font-weight: 800;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cig-btn-mode.active {
+  background: #ffffff;
+  color: #071530;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Metric Output Grid */
+.cig-metrics-grid-4x2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.cig-metric-box {
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 1.35rem 1.25rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.cig-metric-box.highlight-primary {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+.cig-metric-box.highlight-green {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+.cig-metric-box.highlight-gold {
+  background: #fefce8;
+  border-color: #fef08a;
+}
+
+.cig-metric-box .metric-val {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #0f172a;
+  line-height: 1.18;
+  margin-bottom: 0.35rem;
+}
+
+.cig-metric-box .metric-val.blue { color: #2563eb; }
+.cig-metric-box .metric-val.green { color: #16a34a; }
+.cig-metric-box .metric-val.gold { color: #d97706; }
+
+.cig-metric-box .metric-lbl {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.cig-metric-box .metric-sub {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  margin-top: 0.3rem;
+  line-height: 1.4;
+}
+
+/* --------------------------------------------------------------------------
+   5. 3-Way & 4-Way Comparative Cards (Exact Homes Layout Architecture)
+   -------------------------------------------------------------------------- */
+.cig-compare-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+  margin-top: 3rem;
+  align-items: stretch;
+}
+
+.cig-compare-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+  align-items: stretch;
+}
+
+.cig-compare-card {
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 2.25rem 1.85rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cig-compare-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+}
+
+.cig-compare-card.highlight {
+  border: 2px solid #2563eb;
+  background: linear-gradient(180deg, #eff6ff 0%, #ffffff 100%);
+  box-shadow: 0 12px 36px -6px rgba(37, 99, 235, 0.16);
+}
+
+.cig-compare-card.green-card {
+  border: 2px solid #16a34a;
+  background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%);
+  box-shadow: 0 10px 30px -5px rgba(22, 163, 74, 0.12);
+}
+
+.cig-compare-card.red-card {
+  border: 1.5px solid #fca5a5;
+  background: linear-gradient(180deg, #fef2f2 0%, #ffffff 100%);
+  box-shadow: 0 8px 24px -5px rgba(220, 38, 38, 0.08);
+}
+
+.cig-compare-header {
+  margin-bottom: 1.35rem;
+  padding-bottom: 1.15rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.cig-compare-tag {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.3rem 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 0.65rem;
+}
+
+.cig-compare-tag.red { background: #fee2e2; color: #991b1b; }
+.cig-compare-tag.green { background: #dcfce7; color: #15803d; }
+.cig-compare-tag.blue { background: #dbeafe; color: #1e40af; }
+.cig-compare-tag.gold { background: #fef3c7; color: #92400e; }
+
+.cig-compare-title {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #071530;
+  margin-bottom: 0.35rem;
+}
+
+.cig-compare-tagline {
+  font-size: 0.88rem;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+.cig-compare-metric-box {
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.25rem 1.15rem;
+  margin-bottom: 1.25rem;
+}
+
+.cig-compare-metric-box.green-bg { border-color: #86efac; }
+.cig-compare-metric-box.red-bg { border-color: #fca5a5; }
+.cig-compare-metric-box.blue-bg { border-color: #93c5fd; }
+
+.cig-compare-metric-lbl {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  display: block;
+}
+
+.cig-compare-metric-val {
+  font-family: var(--font-heading);
+  font-size: 1.65rem;
+  font-weight: 900;
+  line-height: 1.2;
+  margin: 0.35rem 0 0.25rem;
+}
+
+.cig-compare-metric-val.green { color: #16a34a; }
+.cig-compare-metric-val.red { color: #dc2626; }
+.cig-compare-metric-val.blue { color: #2563eb; }
+
+.cig-compare-metric-sub {
+  font-size: 0.82rem;
+  color: #64748b;
+  display: block;
+}
+
+/* Payback & Return Highlight Pills */
+.cig-compare-pill {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  margin-bottom: 0.85rem;
+}
+
+.cig-compare-pill.green { background: #f0fdf4; border-color: #bbf7d0; }
+.cig-compare-pill.red { background: #fef2f2; border-color: #fecaca; }
+.cig-compare-pill.blue { background: #eff6ff; border-color: #bfdbfe; }
+
+.cig-pill-lbl {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #475569;
+  letter-spacing: 0.03em;
+}
+
+.cig-pill-val {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin: 0.2rem 0;
+}
+
+.cig-pill-val.green { color: #15803d; }
+.cig-pill-val.red { color: #991b1b; }
+.cig-pill-val.blue { color: #1e40af; }
+
+.cig-pill-sub {
+  font-size: 0.78rem;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.cig-compare-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  font-size: 0.92rem;
+  color: #334155;
+  flex-grow: 1;
+}
+
+.cig-compare-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  line-height: 1.5;
+}
+
+.cig-compare-features .chk {
+  color: #16a34a;
+  font-weight: bold;
+}
+
+.cig-compare-footer {
+  padding-top: 1rem;
+  border-top: 1px solid #f1f5f9;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.cig-compare-footer.green { color: #15803d; }
+.cig-compare-footer.red { color: #991b1b; }
+.cig-compare-footer.blue { color: #1e40af; }
+
+/* --------------------------------------------------------------------------
+   6. Single-Line Diagram (SLD) & 24-Hour Factory Graph
+   -------------------------------------------------------------------------- */
+.cig-sld-container {
+  background: #071530;
+  border-radius: 20px;
+  padding: 3rem 2.5rem;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+.cig-sld-flow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 2.5rem;
+  overflow-x: auto;
+  padding-bottom: 1.25rem;
+}
+
+.cig-sld-node {
+  background: rgba(15, 23, 42, 0.95);
+  border: 1.5px solid rgba(59, 130, 246, 0.45);
+  border-radius: 14px;
+  padding: 1.5rem 1.15rem;
+  text-align: center;
+  min-width: 140px;
+  flex-shrink: 0;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.cig-sld-node:hover {
+  transform: translateY(-4px);
+  border-color: #38bdf8;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
+}
+
+.cig-sld-node.dg-node {
+  border-color: rgba(245, 158, 11, 0.6);
+}
+
+.cig-sld-node.load-node {
+  border-color: rgba(34, 197, 94, 0.6);
+}
+
+.cig-sld-node .node-icon {
+  font-size: 2rem;
+  margin-bottom: 0.65rem;
+}
+
+.cig-sld-node .node-title {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.04em;
+}
+
+.cig-sld-node .node-sub {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin-top: 0.25rem;
+}
+
+.cig-sld-arrow {
+  color: #38bdf8;
+  font-size: 1.4rem;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+/* Engineering Checklist Grid */
+.cig-checks-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.15rem;
+  margin-top: 2.5rem;
+}
+
+.cig-check-item {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 0.85rem 1.15rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.92rem;
+  color: #e2e8f0;
+}
+
+.cig-check-item .chk {
+  color: #4ade80;
+  font-weight: 900;
+}
+
+/* --------------------------------------------------------------------------
+   7. 6-Step EPC Process Cards
+   -------------------------------------------------------------------------- */
+.cig-process-grid-6 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+.cig-process-card {
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 2.25rem 2rem;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+}
+
+.cig-process-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.cig-process-step-num {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: 0.92rem;
+  font-weight: 900;
+  color: #2563eb;
+  background: #eff6ff;
+  padding: 0.35rem 0.85rem;
+  border-radius: 8px;
+}
+
+.cig-process-card.gold-step .cig-process-step-num {
+  color: #d97706;
+  background: #fef3c7;
+}
+
+.cig-process-title {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 0.75rem;
+}
+
+.cig-process-desc {
+  font-size: 0.95rem;
+  color: #475569;
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
+}
+
+.cig-process-checks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  font-size: 0.88rem;
+  color: #334155;
+}
+
+.cig-process-checks li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   8. Lead Capture Forms (Wide Responsive Layout)
+   -------------------------------------------------------------------------- */
+.cig-form-section {
+  background: #071530;
+  padding: 6rem 0;
+  color: #ffffff;
+  position: relative;
+}
+
+.cig-form-card {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 3.25rem 2.75rem;
+  color: #0f172a;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.cig-form-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.cig-form-title {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: 2rem;
+  font-weight: 800;
+  color: #071530;
+  margin-bottom: 0.65rem;
+}
+
+.cig-form-subtitle {
+  font-size: 1.05rem;
+  color: #475569;
+  line-height: 1.6;
+}
+
+.cig-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.cig-form-group-full {
+  grid-column: 1 / -1;
+}
+
+.cig-form-label {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 0.45rem;
+}
+
+.cig-form-control {
+  width: 100%;
+  padding: 0.85rem 1.1rem;
+  font-size: 0.98rem;
+  font-family: inherit;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #0f172a;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cig-form-control:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18);
+}
+
+/* --------------------------------------------------------------------------
+   9. Closing Call-To-Action & Legal Framework Section
+   -------------------------------------------------------------------------- */
+.cig-cta-section {
+  background: linear-gradient(135deg, #071530 0%, #0e2a5e 100%);
+  padding: 5.5rem 0;
+  color: #ffffff;
+  text-align: center;
+}
+
+.cig-cta-title {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: clamp(2.1rem, 3.8vw, 3rem);
+  font-weight: 900;
+  margin-bottom: 1.25rem;
+  line-height: 1.2;
+}
+
+.cig-cta-text {
+  font-size: 1.18rem;
+  color: #cbd5e1;
+  max-width: 820px;
+  margin: 0 auto 2.25rem;
+  line-height: 1.7;
+}
+
+.cig-legal-disclaimer {
+  background: #f8fafc;
+  padding: 2.5rem 0;
+  border-top: 1px solid #e2e8f0;
+}
+
+.cig-legal-text {
+  font-size: 0.82rem;
+  color: #64748b;
+  line-height: 1.75;
+  margin: 0;
+  text-align: justify;
+}
+
+/* --------------------------------------------------------------------------
+   10. Responsive Breakpoints
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .cig-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .cig-calc-grid-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .cig-cards-grid-3,
+  .cig-cards-grid-4,
+  .cig-cards-grid-6,
+  .cig-compare-grid,
+  .cig-compare-grid-4,
+  .cig-process-grid-6,
+  .cig-checks-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cig-trust-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .cig-hero-section {
+    padding: 3.5rem 0 3rem;
+  }
+
+  .cig-hero-img {
+    height: 280px;
+  }
+
+  .cig-hero-flow-bar {
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    justify-content: center;
+  }
+
+  .cig-cards-grid-3,
+  .cig-cards-grid-4,
+  .cig-cards-grid-6,
+  .cig-compare-grid,
+  .cig-compare-grid-4,
+  .cig-process-grid-6,
+  .cig-checks-grid,
+  .cig-metrics-grid-4x2,
+  .cig-input-row-2,
+  .cig-input-row-3,
+  .cig-form-grid,
+  .cig-trust-bar {
+    grid-template-columns: 1fr;
+  }
+
+  .cig-calc-container {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .cig-form-card {
+    padding: 2.25rem 1.5rem;
+  }
+}

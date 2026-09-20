@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  html, body { margin:0; padding:0; height:100%; overflow:hidden; }
+  iframe { width:1280px; height:1000px; border:none; }
+</style>
+</head>
+<body>
+  <iframe id="appFrame" src="http://localhost:8080/solar-for-homes"></iframe>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const scrollY = parseInt(params.get('y') || '0');
+    window.onload = () => {
+      setTimeout(() => {
+        const frame = document.getElementById('appFrame');
+        if (frame && frame.contentWindow) {
+          frame.contentWindow.scrollTo(0, scrollY);
+        }
+      }, 800);
+    };
+  </script>
+</body>
+</html>
