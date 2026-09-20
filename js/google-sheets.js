@@ -95,7 +95,43 @@
       // 1. Always save locally immediately (Zero data loss guarantee)
       this.saveLeadLocally(leadPayload);
 
-      // 2. Transmit to Google Apps Script Web App Endpoint if configured
+      // 2. Transmit to Supabase Database
+      try {
+        const supabaseUrl = window.SUPABASE_CONFIG?.url || 'https://klqdckroklrnopfoiivp.supabase.co';
+        const supabaseKey = window.SUPABASE_CONFIG?.anonKey || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtscWRja3Jva2xybm9wZm9paXZwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk5MDE4NDEsImV4cCI6MjEwNTQ3Nzg0MX0.uiOLhS0laFNxDVe7AyKVtUX90fPHsmLBwdN_ykkMMiY';
+
+        await fetch(`${supabaseUrl}/rest/v1/leads`, {
+          method: 'POST',
+          headers: {
+            'apikey': supabaseKey,
+            'Authorization': `Bearer ${supabaseKey}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify({
+            ref_id: leadPayload.refId,
+            full_name: leadPayload.fullName,
+            mobile_number: leadPayload.mobileNumber,
+            city: leadPayload.city,
+            monthly_bill: String(leadPayload.monthlyBill || ''),
+            required_kw: String(leadPayload.requiredKw || ''),
+            recommended_kw: String(leadPayload.recommendedKw || ''),
+            monthly_gen: String(leadPayload.monthlyGen || ''),
+            gross_cost: String(leadPayload.grossCost || ''),
+            subsidy: String(leadPayload.subsidy || ''),
+            net_cost: String(leadPayload.netCost || ''),
+            customer_type: leadPayload.customerType,
+            system_type: leadPayload.systemType,
+            message: leadPayload.message,
+            source_page: leadPayload.sourcePage
+          })
+        });
+        console.log('Lead successfully saved in Supabase database:', refId);
+      } catch (sbErr) {
+        console.warn('Supabase transmission error:', sbErr);
+      }
+
+      // 3. Transmit to Google Apps Script Web App Endpoint if configured
       const activeUrl = this.getWebhookUrl();
       if (activeUrl && activeUrl.startsWith('http')) {
         try {
