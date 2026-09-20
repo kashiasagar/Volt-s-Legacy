@@ -1,12 +1,17 @@
 {
   "name": "volts-legacy",
   "version": "1.0.0",
+  "private": true,
   "description": "Volt's Legacy - Solar Energy Solutions",
   "main": "server.js",
   "scripts": {
+    "build": "echo \"Build complete\"",
     "start": "node server.js"
   },
   "dependencies": {
     "express": "^4.21.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
