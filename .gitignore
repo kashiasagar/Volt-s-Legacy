@@ -4,6 +4,4 @@ node_modules/
 Thumbs.db
 *.anim_bak
 *.bak
-.env
-.env.local
-.env.*.local
+*.zip
