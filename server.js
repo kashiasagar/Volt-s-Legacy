@@ -1,3 +1,9 @@
+try {
+  require('dotenv').config();
+} catch (e) {
+  // dotenv is optional in production
+}
+
 const express = require('express');
 const path = require('path');
 
