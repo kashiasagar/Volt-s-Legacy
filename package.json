@@ -1,0 +1,12 @@
+{
+  "name": "volts-legacy",
+  "version": "1.0.0",
+  "description": "Volt's Legacy - Solar Energy Solutions",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": ["solar", "volts-legacy"],
+  "author": "kashiasagar",
+  "license": "ISC"
+}
