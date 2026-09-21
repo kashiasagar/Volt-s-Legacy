@@ -15,11 +15,12 @@
   const STORAGE_KEY_LEADS = 'volt_legacy_all_enquiries';
 
   // Default fallback webhook URL (Can be customized by user or configured via settings / window)
-  const DEFAULT_WEBHOOK_URL = window.GOOGLE_SHEETS_WEBHOOK_URL || localStorage.getItem(STORAGE_KEY_WEBHOOK) || '';
+  const CONFIGURED_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxyj0RCeH8XNz9PA42g0NFiVnALOeK2crX6a13hiWdD_GNVTV9hRipJsXr5I8lrYYu3SQ/exec';
+  const DEFAULT_WEBHOOK_URL = window.GOOGLE_SHEETS_WEBHOOK_URL || localStorage.getItem(STORAGE_KEY_WEBHOOK) || CONFIGURED_WEBHOOK_URL;
 
   class GoogleSheetsLeadManager {
     constructor() {
-      this.webhookUrl = localStorage.getItem(STORAGE_KEY_WEBHOOK) || DEFAULT_WEBHOOK_URL;
+      this.webhookUrl = localStorage.getItem(STORAGE_KEY_WEBHOOK) || CONFIGURED_WEBHOOK_URL;
     }
 
     // Get current configured Webhook URL

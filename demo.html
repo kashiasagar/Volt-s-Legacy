@@ -350,9 +350,15 @@
         </div>
       </div>
 
-      <div class="supabase-badge">
-        <span class="pulse-dot"></span>
-        <span>Supabase Connected (klqdckroklrnopfoiivp)</span>
+      <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+        <div class="supabase-badge">
+          <span class="pulse-dot"></span>
+          <span>Supabase Live</span>
+        </div>
+        <a href="https://docs.google.com/spreadsheets/d/1ti3zAHz62wDGIGjqFWsM6_kJlML6UWrYRJpkKbjoKk0/edit?gid=0#gid=0" target="_blank" style="text-decoration: none;" class="supabase-badge" style="background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.3); color: #10b981;">
+          <span class="pulse-dot" style="background: #10b981; box-shadow: 0 0 12px #10b981;"></span>
+          <span style="color: #34d399;">📊 Open Google Sheet ↗</span>
+        </a>
       </div>
     </header>
 
@@ -360,7 +366,7 @@
       <!-- FORM COLUMN -->
       <div class="card">
         <div class="card-title">📝 Solar Enquiry Form</div>
-        <div class="card-desc">Fill out this test form. When you click Submit, data transmits immediately to your remote Supabase PostgreSQL database.</div>
+        <div class="card-desc">Fill out this test form. When you click Submit, data transmits immediately to both your <strong>Supabase PostgreSQL database</strong> and your <strong>Google Sheet</strong>.</div>
 
         <form id="leadForm">
           <div class="form-group">
@@ -444,6 +450,7 @@
   <script>
     const SUPABASE_URL = 'https://klqdckroklrnopfoiivp.supabase.co';
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtscWRja3Jva2xybm9wZm9paXZwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk5MDE4NDEsImV4cCI6MjEwNTQ3Nzg0MX0.uiOLhS0laFNxDVe7AyKVtUX90fPHsmLBwdN_ykkMMiY';
+    const GOOGLE_SHEETS_WEBHOOK = 'https://script.google.com/macros/s/AKfycbxyj0RCeH8XNz9PA42g0NFiVnALOeK2crX6a13hiWdD_GNVTV9hRipJsXr5I8lrYYu3SQ/exec';
 
     async function fetchLeads() {
       try {
@@ -510,21 +517,28 @@
       e.preventDefault();
       const submitBtn = document.getElementById('submitBtn');
       submitBtn.disabled = true;
-      submitBtn.innerHTML = '<span>⏳ Saving to Supabase...</span>';
+      submitBtn.innerHTML = '<span>⏳ Saving to Supabase & Sheet...</span>';
 
       const refId = 'VL-DEMO-' + Math.floor(100000 + Math.random() * 900000);
+      const fullName = document.getElementById('fullName').value.trim();
+      const mobileNumber = document.getElementById('mobileNumber').value.trim();
+      const city = document.getElementById('city').value.trim();
+      const monthlyBill = document.getElementById('monthlyBill').value.trim();
+      const customerType = document.getElementById('customerType').value;
+
       const newLead = {
         ref_id: refId,
-        full_name: document.getElementById('fullName').value.trim(),
-        mobile_number: document.getElementById('mobileNumber').value.trim(),
-        city: document.getElementById('city').value.trim(),
-        monthly_bill: document.getElementById('monthlyBill').value.trim(),
-        customer_type: document.getElementById('customerType').value,
+        full_name: fullName,
+        mobile_number: mobileNumber,
+        city: city,
+        monthly_bill: monthlyBill,
+        customer_type: customerType,
         system_type: 'On-Grid Solar System',
-        message: 'Submitted via Volt\'s Legacy Supabase Live Demo Screen',
+        message: 'Submitted via Volt\'s Legacy Supabase & Google Sheets Live Demo Screen',
         source_page: 'Live Demo Page'
       };
 
+      // 1. Submit to Supabase
       try {
         const res = await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
           method: 'POST',
@@ -537,8 +551,33 @@
           body: JSON.stringify(newLead)
         });
 
+        // 2. Submit to Google Sheets Webhook
+        try {
+          await fetch(GOOGLE_SHEETS_WEBHOOK, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+              refId: refId,
+              fullName: fullName,
+              mobileNumber: mobileNumber,
+              city: city,
+              monthlyBill: monthlyBill,
+              customerType: customerType,
+              systemType: 'On-Grid Solar System',
+              message: 'Live Demo Lead',
+              sourcePage: 'Live Demo Page'
+            })
+          });
+        } catch (gsErr) {
+          console.warn('Google Sheets Webhook dispatch:', gsErr);
+        }
+
         if (res.ok) {
-          showToast(`Success! Lead saved in Supabase with Ref: ${refId}`);
+          showToast(`Success! Lead saved to Supabase & Google Sheet (Ref: ${refId})`);
           await fetchLeads();
           // Generate new sample data for next click
           const names = ['Kavita Mehta', 'Suresh Joshi', 'Nilesh Dave', 'Bhavin Shah', 'Pooja Trivedi'];
@@ -551,10 +590,10 @@
         }
       } catch (err) {
         console.error('Error submitting lead:', err);
-        alert('Failed to connect to Supabase: ' + err.message);
+        alert('Failed to connect: ' + err.message);
       } finally {
         submitBtn.disabled = false;
-        submitBtn.innerHTML = '<span>🚀 Submit to Supabase</span>';
+        submitBtn.innerHTML = '<span>🚀 Submit to Supabase & Sheet</span>';
       }
     });
 
