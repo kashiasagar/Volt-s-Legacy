@@ -3,24 +3,21 @@
  * VOLT'S LEGACY - Google Sheets Auto-Lead Sync Script
  * Target Sheet: https://docs.google.com/spreadsheets/d/1ti3zAHz62wDGIGjqFWsM6_kJlML6UWrYRJpkKbjoKk0/edit
  * ==========================================================================
- * 
- * INSTRUCTIONS:
- * 1. Open your Google Sheet: https://docs.google.com/spreadsheets/d/1ti3zAHz62wDGIGjqFWsM6_kJlML6UWrYRJpkKbjoKk0/edit
- * 2. Click on "Extensions" (एक्सटेंशन) -> "Apps Script".
- * 3. Delete any default code inside and PASTE THIS ENTIRE FILE.
- * 4. Click "Deploy" (तैनात करें) -> "New deployment" (नया डिप्लॉयमेंट).
- * 5. Click the Gear icon ⚙️ -> Select "Web app" (वेब ऐप).
- * 6. Set Description: "Volt's Legacy Webhook"
- * 7. Set "Execute as": "Me" (your Google account)
- * 8. Set "Who has access": "Anyone" (कोई भी) [VERY IMPORTANT]
- * 9. Click "Deploy" -> Authorize access -> Copy the "Web app URL".
- * 10. Paste that Web App URL in your .env file as GOOGLE_SHEETS_WEBHOOK_URL.
  */
+
+var TARGET_SPREADSHEET_ID = "1ti3zAHz62wDGIGjqFWsM6_kJlML6UWrYRJpkKbjoKk0";
+
+function getSheet() {
+  try {
+    return SpreadsheetApp.openById(TARGET_SPREADSHEET_ID).getSheets()[0];
+  } catch (err) {
+    return SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
+  }
+}
 
 function doPost(e) {
   try {
-    var ss = SpreadsheetApp.getActiveSpreadsheet();
-    var sheet = ss.getActiveSheet();
+    var sheet = getSheet();
     
     // Auto-create headers if sheet is empty
     if (sheet.getLastRow() === 0) {
@@ -50,12 +47,16 @@ function doPost(e) {
 
     var data = {};
     if (e.postData && e.postData.contents) {
-      data = JSON.parse(e.postData.contents);
+      try {
+        data = JSON.parse(e.postData.contents);
+      } catch (jsonErr) {
+        data = e.parameter || {};
+      }
     } else if (e.parameter) {
       data = e.parameter;
     }
 
-    sheet.appendRow([
+    var newRow = [
       data.timestamp || new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
       data.refId || data.ref_id || "",
       data.fullName || data.full_name || "",
@@ -72,17 +73,33 @@ function doPost(e) {
       data.systemType || data.system_type || "",
       data.message || "",
       data.sourcePage || data.source_page || ""
-    ]);
+    ];
 
-    return ContentService.createTextOutput(JSON.stringify({ status: "success", message: "Lead added successfully" }))
-      .setMimeType(ContentService.MimeType.JSON);
+    sheet.appendRow(newRow);
+
+    return ContentService.createTextOutput(JSON.stringify({
+      status: "success",
+      sheetName: sheet.getName(),
+      totalRows: sheet.getLastRow(),
+      refId: data.refId || data.ref_id
+    })).setMimeType(ContentService.MimeType.JSON);
+
   } catch (err) {
-    return ContentService.createTextOutput(JSON.stringify({ status: "error", message: err.toString() }))
-      .setMimeType(ContentService.MimeType.JSON);
+    return ContentService.createTextOutput(JSON.stringify({
+      status: "error",
+      message: err.toString()
+    })).setMimeType(ContentService.MimeType.JSON);
   }
 }
 
 function doGet(e) {
-  return ContentService.createTextOutput("Volt's Legacy Google Sheets Webhook is Active and Ready.")
-    .setMimeType(ContentService.MimeType.TEXT);
+  try {
+    var sheet = getSheet();
+    return ContentService.createTextOutput(
+      "SUCCESS: Connected to " + sheet.getParent().getName() + " | Tab: " + sheet.getName() + " | Total Rows: " + sheet.getLastRow()
+    ).setMimeType(ContentService.MimeType.TEXT);
+  } catch (err) {
+    return ContentService.createTextOutput("ERROR: " + err.toString())
+      .setMimeType(ContentService.MimeType.TEXT);
+  }
 }
