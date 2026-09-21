@@ -21,11 +21,14 @@
   class GoogleSheetsLeadManager {
     constructor() {
       this.webhookUrl = CONFIGURED_WEBHOOK_URL;
+      try {
+        localStorage.setItem(STORAGE_KEY_WEBHOOK, CONFIGURED_WEBHOOK_URL);
+      } catch (e) {}
     }
 
-    // Get current configured Webhook URL
+    // Get current configured Webhook URL (Always ensures production verified endpoint)
     getWebhookUrl() {
-      return localStorage.getItem(STORAGE_KEY_WEBHOOK) || this.webhookUrl || '';
+      return CONFIGURED_WEBHOOK_URL;
     }
 
     // Set & Save new Webhook URL
@@ -140,10 +143,19 @@
       const activeUrl = this.getWebhookUrl();
       if (activeUrl && activeUrl.startsWith('http')) {
         try {
+          // Prepare URL parameters as a secondary fallback so Apps Script receives via e.parameter or e.postData
+          const urlObj = new URL(activeUrl);
+          Object.keys(leadPayload).forEach(key => {
+            if (leadPayload[key] !== undefined && leadPayload[key] !== null) {
+              urlObj.searchParams.set(key, String(leadPayload[key]));
+            }
+          });
+
           // Google Apps Script accepts text/plain to bypass CORS preflight in browsers
-          await fetch(activeUrl, {
+          await fetch(urlObj.toString(), {
             method: 'POST',
             mode: 'no-cors',
+            keepalive: true,
             headers: {
               'Content-Type': 'text/plain;charset=utf-8'
             },
