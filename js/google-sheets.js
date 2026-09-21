@@ -140,11 +140,12 @@
       const activeUrl = this.getWebhookUrl();
       if (activeUrl && activeUrl.startsWith('http')) {
         try {
+          // Google Apps Script accepts text/plain to bypass CORS preflight in browsers
           await fetch(activeUrl, {
             method: 'POST',
-            mode: 'no-cors', // Standard for Google Apps Script Web Apps
+            mode: 'no-cors',
             headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'text/plain;charset=utf-8'
             },
             body: JSON.stringify(leadPayload)
           });
