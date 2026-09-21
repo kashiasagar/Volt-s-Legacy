@@ -3512,16 +3512,6 @@ function renderOffGridView() {
                 <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#16a34a; box-shadow:0 0 8px #22c55e;"></span>
                 Off-Grid Energy Flow
               </div>
-
-              <!-- Day / Night Toggle -->
-              <div style="display:inline-flex; background:#e2e8f0; padding:3px; border-radius:10px; gap:3px;">
-                <button type="button" id="btnOffGridDay" onclick="window.setOffGridSimMode('day')" style="padding:5px 14px; border-radius:7px; border:none; font-size:0.78rem; font-weight:800; cursor:pointer; background:#ffffff; color:#0f172a; box-shadow:0 1px 3px rgba(0,0,0,0.1); transition:all 0.2s ease;">
-                  DAY &#9728;
-                </button>
-                <button type="button" id="btnOffGridNight" onclick="window.setOffGridSimMode('night')" style="padding:5px 14px; border-radius:7px; border:none; font-size:0.78rem; font-weight:800; cursor:pointer; background:transparent; color:#64748b; transition:all 0.2s ease;">
-                  NIGHT &#127769;
-                </button>
-              </div>
             </div>
 
             <!-- SVG Canvas (Strictly NO ELECTRICITY GRID) -->
@@ -4038,12 +4028,16 @@ function renderOffGridView() {
 
           if (mode === 'day') {
             wrap.classList.remove('mode-night');
-            btnDay.style.background = '#ffffff';
-            btnDay.style.color = '#0f172a';
-            btnDay.style.boxShadow = '0 1px 3px rgba(0,0,0,0.1)';
-            btnNight.style.background = 'transparent';
-            btnNight.style.color = '#64748b';
-            btnNight.style.boxShadow = 'none';
+            if (btnDay) {
+              btnDay.style.background = '#ffffff';
+              btnDay.style.color = '#0f172a';
+              btnDay.style.boxShadow = '0 1px 3px rgba(0,0,0,0.1)';
+            }
+            if (btnNight) {
+              btnNight.style.background = 'transparent';
+              btnNight.style.color = '#64748b';
+              btnNight.style.boxShadow = 'none';
+            }
 
             if (sunBeam) sunBeam.style.display = 'block';
             if (nodeSun) nodeSun.style.display = 'block';
@@ -4067,12 +4061,16 @@ function renderOffGridView() {
             }
           } else {
             wrap.classList.add('mode-night');
-            btnNight.style.background = '#ffffff';
-            btnNight.style.color = '#0f172a';
-            btnNight.style.boxShadow = '0 1px 3px rgba(0,0,0,0.1)';
-            btnDay.style.background = 'transparent';
-            btnDay.style.color = '#64748b';
-            btnDay.style.boxShadow = 'none';
+            if (btnNight) {
+              btnNight.style.background = '#ffffff';
+              btnNight.style.color = '#0f172a';
+              btnNight.style.boxShadow = '0 1px 3px rgba(0,0,0,0.1)';
+            }
+            if (btnDay) {
+              btnDay.style.background = 'transparent';
+              btnDay.style.color = '#64748b';
+              btnDay.style.boxShadow = 'none';
+            }
 
             if (sunBeam) sunBeam.style.display = 'none';
             if (nodeSun) nodeSun.style.display = 'none';
@@ -4416,19 +4414,6 @@ function renderHybridView() {
               <div style="display:flex; align-items:center; gap:0.5rem; font-size:0.82rem; font-weight:800; color:#0f172a; text-transform:uppercase; letter-spacing:0.04em;">
                 <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#16a34a; box-shadow:0 0 8px #22c55e;"></span>
                 Hybrid Energy Flow
-              </div>
-
-              <!-- 3-Way Mode Toggle: DAY / NIGHT / OUTAGE -->
-              <div style="display:inline-flex; background:#e2e8f0; padding:3px; border-radius:10px; gap:3px;">
-                <button type="button" id="btnHybDay" onclick="window.setHybridSimMode('day')" style="padding:5px 12px; border-radius:7px; border:none; font-size:0.75rem; font-weight:800; cursor:pointer; background:#ffffff; color:#0f172a; box-shadow:0 1px 3px rgba(0,0,0,0.1); transition:all 0.2s ease;">
-                  DAY &#9728;
-                </button>
-                <button type="button" id="btnHybNight" onclick="window.setHybridSimMode('night')" style="padding:5px 12px; border-radius:7px; border:none; font-size:0.75rem; font-weight:800; cursor:pointer; background:transparent; color:#64748b; transition:all 0.2s ease;">
-                  NIGHT &#127769;
-                </button>
-                <button type="button" id="btnHybOutage" onclick="window.setHybridSimMode('outage')" style="padding:5px 12px; border-radius:7px; border:none; font-size:0.75rem; font-weight:800; cursor:pointer; background:transparent; color:#64748b; transition:all 0.2s ease;">
-                  OUTAGE &#9889;
-                </button>
               </div>
             </div>
 
