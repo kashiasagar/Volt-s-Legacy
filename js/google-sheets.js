@@ -6,12 +6,16 @@
 (function() {
   'use strict';
 
+  // Target Google Sheet configuration
+  const TARGET_SHEET_URL = 'https://docs.google.com/spreadsheets/d/1ti3zAHz62wDGIGjqFWsM6_kJlML6UWrYRJpkKbjoKk0/edit?gid=0#gid=0';
+  const TARGET_SHEET_ID = '1ti3zAHz62wDGIGjqFWsM6_kJlML6UWrYRJpkKbjoKk0';
+
   // Default / Configured Google Apps Script Web App Endpoint
   const STORAGE_KEY_WEBHOOK = 'volt_legacy_gsheet_webhook_url';
   const STORAGE_KEY_LEADS = 'volt_legacy_all_enquiries';
 
-  // Default fallback webhook URL (Can be customized by user or configured via settings)
-  const DEFAULT_WEBHOOK_URL = localStorage.getItem(STORAGE_KEY_WEBHOOK) || '';
+  // Default fallback webhook URL (Can be customized by user or configured via settings / window)
+  const DEFAULT_WEBHOOK_URL = window.GOOGLE_SHEETS_WEBHOOK_URL || localStorage.getItem(STORAGE_KEY_WEBHOOK) || '';
 
   class GoogleSheetsLeadManager {
     constructor() {
