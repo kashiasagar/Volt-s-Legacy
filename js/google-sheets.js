@@ -85,7 +85,7 @@
         timestamp: istTime,
         refId: refId,
         fullName: rawLead.fullName || '',
-        mobileNumber: rawLead.mobileNumber || rawLead.phone || '',
+        mobileNumber: (rawLead.mobileNumber || rawLead.phone || '').toString().trim().replace(/^\+/, ''),
         city: rawLead.city || '',
         monthlyBill: rawLead.monthlyBill || '',
         requiredKw: rawLead.requiredKw || '',

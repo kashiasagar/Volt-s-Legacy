@@ -56,11 +56,16 @@ function doPost(e) {
       data = e.parameter;
     }
 
+    var phone = String(data.mobileNumber || data.mobile_number || "").trim();
+    if (phone.startsWith("+") || phone.startsWith("=")) {
+      phone = "'" + phone;
+    }
+
     var newRow = [
       data.timestamp || new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
       data.refId || data.ref_id || "",
       data.fullName || data.full_name || "",
-      data.mobileNumber || data.mobile_number || "",
+      phone,
       data.city || "",
       data.monthlyBill || data.monthly_bill || "",
       data.requiredKw || data.required_kw || "",
