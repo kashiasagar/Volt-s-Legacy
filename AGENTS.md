@@ -3,3 +3,4 @@
 - **Full Autonomy**: Execute all tasks, file edits, code implementations, bug fixes, and non-destructive commands directly and autonomously.
 - **Zero Routine Permission Prompts**: Do not interrupt the user with interactive permission prompts, confirmation questions, or planning blocks unless the user explicitly says to ask for permission.
 - **Immediate Action**: Proceed directly to implementation and verification, then deliver concise results.
+- **Continuous GitHub Sync**: After completing any file edit, feature implementation, or bug fix, always automatically stage, commit, and push all changes to GitHub (`main` and `master` branches) so the remote repository is permanently up to date.
