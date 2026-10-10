@@ -7,7 +7,30 @@ class AppRouter {
     this.routes = routes;
     this.appRoot = document.getElementById('app-view');
     this.isLocalFile = window.location.protocol === 'file:';
+    this.repoPrefix = this.detectRepoPrefix();
     this.init();
+  }
+
+  detectRepoPrefix() {
+    if (window.location.hostname.endsWith('github.io')) {
+      const parts = window.location.pathname.split('/').filter(Boolean);
+      return parts.length > 0 ? '/' + parts[0] : '';
+    }
+    return '';
+  }
+
+  stripRepoPrefix(path) {
+    if (this.repoPrefix && path.startsWith(this.repoPrefix)) {
+      const remainder = path.slice(this.repoPrefix.length);
+      return remainder ? (remainder.startsWith('/') ? remainder : '/' + remainder) : '/';
+    }
+    return path;
+  }
+
+  formatFullPath(path) {
+    let clean = path;
+    if (!clean.startsWith('/')) clean = '/' + clean;
+    return this.repoPrefix ? this.repoPrefix + clean : clean;
   }
 
   init() {
@@ -19,13 +42,13 @@ class AppRouter {
       let href = clickable.getAttribute('href') || clickable.getAttribute('data-href');
       if (!href) return;
 
-      // Strip same-origin domain if present (e.g. http://localhost:8080/contact)
-      if (href.startsWith(window.location.origin)) {
-        href = href.slice(window.location.origin.length);
+      // Ignore external or protocol links
+      if (href.startsWith('tel:') || href.startsWith('mailto:') || href.startsWith('http:') || href.startsWith('https:') || href.startsWith('//')) {
+        return;
       }
 
-      // Handle relative routing paths (starting with / or #)
-      if (href.startsWith('/') || href.startsWith('#')) {
+      // Handle relative routing paths (starting with / or # or ./)
+      if (href.startsWith('/') || href.startsWith('#') || href.startsWith('./')) {
         e.preventDefault();
         this.navigate(href);
       }
@@ -56,20 +79,25 @@ class AppRouter {
       return;
     }
 
+    let routePath = path;
+    if (routePath.startsWith('./')) routePath = routePath.slice(1);
+    if (!routePath.startsWith('/')) routePath = '/' + routePath;
+    routePath = this.stripRepoPrefix(routePath);
+
     if (this.isLocalFile) {
-      // Under file://, use window.location.hash to allow full routing without browser origin security errors
-      window.location.hash = path;
+      window.location.hash = routePath;
     } else {
-      if (window.location.pathname !== path) {
+      const fullUrl = this.formatFullPath(routePath);
+      if (window.location.pathname !== fullUrl) {
         try {
-          window.history.pushState({}, '', path);
+          window.history.pushState({}, '', fullUrl);
         } catch (e) {
-          window.location.hash = path;
+          window.location.hash = routePath;
         }
       }
     }
 
-    this.resolveRoute(path);
+    this.resolveRoute(routePath);
 
     // Scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -88,6 +116,7 @@ class AppRouter {
       }
     } else {
       currentPath = window.location.pathname || '/';
+      currentPath = this.stripRepoPrefix(currentPath);
       if (window.location.hash && currentPath === '/') {
         currentPath = window.location.hash.replace('#', '') || '/';
       }
@@ -96,8 +125,9 @@ class AppRouter {
   }
 
   resolveRoute(path) {
+    const rawPath = this.stripRepoPrefix(path);
     // Strip query string and hash for route matching
-    const basePath = path.split('?')[0].split('#')[0];
+    const basePath = rawPath.split('?')[0].split('#')[0];
     const cleanPath = basePath.length > 1 && basePath.endsWith('/') ? basePath.slice(0, -1) : basePath;
     
     let handler = this.routes[cleanPath];

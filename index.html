@@ -2,8 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  
+  <!-- Universal Base Path Resolver (Supports GitHub Pages, Custom Domains, Localhost, & File Preview) -->
+  <script>
+    (function() {
+      var isGitHub = window.location.hostname.endsWith('github.io');
+      var isFile = window.location.protocol === 'file:';
+      var baseEl = document.querySelector('base') || document.createElement('base');
+      if (isGitHub) {
+        var segments = window.location.pathname.split('/').filter(Boolean);
+        var repo = segments.length > 0 ? segments[0] : '';
+        baseEl.href = repo ? '/' + repo + '/' : '/';
+      } else if (isFile) {
+        baseEl.href = './';
+      } else {
+        baseEl.href = '/';
+      }
+      if (!document.querySelector('base')) {
+        document.head.insertBefore(baseEl, document.head.firstChild);
+      }
+    })();
+  </script>
   
   <!-- Primary Meta Tags -->
   <title>VOLT'S LEGACY SOLAR | Premium Solar Energy Solutions</title>
@@ -24,10 +44,10 @@
   <link rel="icon" type="image/png" href="assets/logo.png">
 
   <!-- CSS Stylesheets -->
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/components.css?v=2.6">
-  <link rel="stylesheet" href="css/commercial-industrial-ground.css">
-  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/main.css?v=3.0">
+  <link rel="stylesheet" href="css/components.css?v=3.0">
+  <link rel="stylesheet" href="css/commercial-industrial-ground.css?v=3.0">
+  <link rel="stylesheet" href="css/responsive.css?v=3.0">
 
   <!-- Structured Data JSON-LD -->
   <script type="application/ld+json">
@@ -504,16 +524,16 @@
   </a>
 
   <!-- JavaScript Scripts -->
-  <script src="js/carousel.js?v=2.7"></script>
-  <script src="js/navigation.js?v=2.7"></script>
-  <script src="js/google-sheets.js?v=2.7"></script>
-  <script src="js/quotation.js?v=2.7"></script>
-  <script src="js/on-grid-simulator.js?v=2.7"></script>
-  <script src="js/roi-capacity-finder.js?v=2.7"></script>
-  <script src="js/commercial-solar.js?v=2.7"></script>
-  <script src="js/industrial-solar.js?v=2.7"></script>
-  <script src="js/ground-mount-solar.js?v=2.7"></script>
-  <script src="js/main.js?v=2.7"></script>
-  <script src="js/router.js?v=2.7"></script>
+  <script src="js/carousel.js?v=3.0"></script>
+  <script src="js/navigation.js?v=3.0"></script>
+  <script src="js/google-sheets.js?v=3.0"></script>
+  <script src="js/quotation.js?v=3.0"></script>
+  <script src="js/on-grid-simulator.js?v=3.0"></script>
+  <script src="js/roi-capacity-finder.js?v=3.0"></script>
+  <script src="js/commercial-solar.js?v=3.0"></script>
+  <script src="js/industrial-solar.js?v=3.0"></script>
+  <script src="js/ground-mount-solar.js?v=3.0"></script>
+  <script src="js/main.js?v=3.0"></script>
+  <script src="js/router.js?v=3.0"></script>
 </body>
 </html>

@@ -10893,8 +10893,11 @@
 }
 
 .dc-ba-after-wrap .dc-ba-after-img {
-  width: 960px;
+  width: 100%;
+  min-width: 100%;
   max-width: none;
+  height: 100%;
+  object-fit: cover;
 }
 
 .dc-ba-slider-handle {
@@ -11178,7 +11181,7 @@
 
 .dc-pillars-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.75rem;
   margin-top: 3rem;
 }
@@ -11407,7 +11410,7 @@
   position: absolute;
   top: 0;
   right: 0;
-  width: 450px;
+  width: min(450px, 100%);
   height: 100%;
   background: radial-gradient(circle, rgba(251, 191, 36, 0.08) 0%, transparent 70%);
   pointer-events: none;

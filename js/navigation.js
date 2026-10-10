@@ -48,17 +48,50 @@ class Navigation {
       });
     });
 
+    // Auto-close mobile drawer when any link inside drawer is clicked
+    if (this.mobileDrawer) {
+      this.mobileDrawer.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          this.closeMobileMenu();
+        });
+      });
+
+      // Touch swipe right to close drawer on touch devices
+      let touchStartX = 0;
+      this.mobileDrawer.addEventListener('touchstart', (e) => {
+        if (e.touches && e.touches[0]) {
+          touchStartX = e.touches[0].clientX;
+        }
+      }, { passive: true });
+
+      this.mobileDrawer.addEventListener('touchend', (e) => {
+        if (e.changedTouches && e.changedTouches[0]) {
+          const touchEndX = e.changedTouches[0].clientX;
+          if (touchEndX - touchStartX > 50) { // Swiped right toward screen edge
+            this.closeMobileMenu();
+          }
+        }
+      }, { passive: true });
+    }
+
     // Close mobile menu on Escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && this.mobileDrawer?.classList.contains('active')) {
         this.closeMobileMenu();
       }
     });
+
+    // Auto-close drawer if screen resized or orientation changed to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1180 && this.mobileDrawer?.classList.contains('active')) {
+        this.closeMobileMenu();
+      }
+    }, { passive: true });
   }
 
   handleScroll() {
     if (!this.header) return;
-    if (window.scrollY > 30) {
+    if (window.scrollY > 20) {
       this.header.classList.add('scrolled');
     } else {
       this.header.classList.remove('scrolled');
@@ -68,12 +101,14 @@ class Navigation {
   openMobileMenu() {
     if (this.mobileDrawer) this.mobileDrawer.classList.add('active');
     if (this.mobileOverlay) this.mobileOverlay.classList.add('active');
+    document.body.classList.add('mobile-menu-open');
     document.body.style.overflow = 'hidden';
   }
 
   closeMobileMenu() {
     if (this.mobileDrawer) this.mobileDrawer.classList.remove('active');
     if (this.mobileOverlay) this.mobileOverlay.classList.remove('active');
+    document.body.classList.remove('mobile-menu-open');
     document.body.style.overflow = '';
   }
 
